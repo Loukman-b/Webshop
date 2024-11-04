@@ -11,7 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create("review", function (Blueprint $table) {
+            $table->id('review_id');
+            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('order_id');
+            $table->text('review');
+            $table->timestamps();
+            
+        });
+
+        
     }
 
     /**
@@ -19,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('review');
     }
 };
