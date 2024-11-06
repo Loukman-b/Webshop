@@ -28,7 +28,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $this->vaildate ($request, [
+        $this->validate ($request, [
             'name'=>'required',
             'merk'=>'required',
             'description'=>'required',
@@ -48,7 +48,7 @@ class ProductController extends Controller
         $product->content = $request->content;
         $product-> type = $request-> type;
         $product-> image = $request-> image;
-        $product-> scent_smilarities = $request->scent_smilarities ;
+        $product-> scent_similarities = $request->scent_similarities ;
         $product-> stock= $request-> stock;
         $product->save();
 
