@@ -36,10 +36,14 @@
             <label for="type">Type</label>
             <input type="text" name="type" class="form-control" required>
         </div>
+        <div class="form-group">
+            <label for="category_id">Categorie</label>
+            <input type="text" name="category_id" class="form-control" required>
+        </div>       
 
         <div class="form-group">
             <label for="image">Afbeelding</label>
-            <input type="file" name="image" class="form-control" required>
+            <input type="file" name="image" class="form-control" >
         </div>
 
         <div class="form-group">

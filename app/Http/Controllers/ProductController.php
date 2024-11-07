@@ -38,19 +38,21 @@ class ProductController extends Controller
             'image'=>'required',
             'scent_similarities'=>'required',
             'stock'=>'required',
+            'category_id'=>'required',
         ]);
 
-        $product = new Product();
-        $product->name = $request ->name;
-        $product->merk = $request ->merk;
-        $product->description = $request -> description;
-        $product->price = $request-> price;
-        $product->content = $request->content;
-        $product-> type = $request-> type;
-        $product-> image = $request-> image;
-        $product-> scent_similarities = $request->scent_similarities ;
-        $product-> stock= $request-> stock;
-        $product->save();
+        $products = new Product();
+        $products->name = $request ->name;
+        $products->merk = $request ->merk;
+        $products->description = $request -> description;
+        $products->price = $request-> price;
+        $products->content = $request->content;
+        $products->type = $request-> type;
+        $products->image = $request-> image;
+        $products->scent_similarities = $request->scent_similarities ;
+        $products->category_id = $request->category_id; 
+        $products-> stock= $request-> stock;
+        $products->save();
 
         return redirect()->route("products.index")->with('success', 'Product succesvol aangemaakt!');
     }
@@ -60,8 +62,8 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        $product = Product::findOrfail($id);
-        return view("dashboard/products/show") ->with('product', $product);
+        $products = Product::findOrfail($id);
+        return view("dashboard/products/show") ->with('product', $products);
     }
 
     /**
@@ -69,16 +71,43 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        $product = Product::findOrFail($id);
-        return view("dashboard/products/edit")->with('product', $product);
-    }    
+        $products = Product::findOrFail($id);  
+        return view("dashboard/products/edit")->with('product', $products);
+    }
+   
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->validate ($request, [
+            'name'=>'required',
+            'merk'=>'required',
+            'description'=>'required',
+            'price'=>'required',
+            'content'=>'required',
+            'type'=>'required',
+            'image'=>'required',
+            'scent_similarities'=>'required',
+            'stock'=>'required',
+            'category_id'=>'required',
+        ]);
+
+        $products = Prodcut::findOrFaill($id);
+        $products->name = $request ->name;
+        $products->merk = $request ->merk;
+        $products->description = $request -> description;
+        $products->price = $request-> price;
+        $products->content = $request->content;
+        $products->type = $request-> type;
+        $products->image = $request-> image;
+        $products->scent_similarities = $request->scent_similarities ;
+        $products->category_id = $request->category_id; 
+        $products-> stock= $request-> stock;
+        $products->save();
+
+        return redirect()->route("products.index")->with('success', 'Product succesvol aangepast!');
     }
 
     /**
@@ -86,6 +115,7 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Product::destroy($id);
+        return redirect()->route("products.index")->with('success', 'Product succesvol verwijderd!');
     }
 }

@@ -6,12 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create("payment", function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id('payment_id');
             $table->unsignedBigInteger('order_id');
             $table->dateTime('payed_on')->nullable();
@@ -19,15 +16,12 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
-           
+            
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('payment');
+        Schema::dropIfExists('payments');
     }
 };
