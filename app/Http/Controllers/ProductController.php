@@ -51,7 +51,7 @@ class ProductController extends Controller
         $products->image = $request-> image;
         $products->scent_similarities = $request->scent_similarities ;
         $products->category_id = $request->category_id; 
-        $products-> stock= $request-> stock;
+        $products->stock = $request->stock;
         $products->save();
 
         return redirect()->route("products.index")->with('success', 'Product succesvol aangemaakt!');
@@ -62,7 +62,7 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        $products = Product::findOrfail($id);
+        $products = Product::findOrFail($id);
         return view("dashboard/products/show") ->with('product', $products);
     }
 
@@ -70,13 +70,12 @@ class ProductController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
-        $products = Product::findOrFail($id);  
-        return view("dashboard/products/edit")->with('product', $products);
-    }
-   
+{
+    $products = Product::findOrFail($id);
+    return view("dashboard/products/edit")->with('product', $products);
+}
 
-    /**
+       /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
@@ -94,7 +93,7 @@ class ProductController extends Controller
             'category_id'=>'required',
         ]);
 
-        $products = Prodcut::findOrFaill($id);
+        $products = Product::findOrFail($id);
         $products->name = $request ->name;
         $products->merk = $request ->merk;
         $products->description = $request -> description;
@@ -104,7 +103,7 @@ class ProductController extends Controller
         $products->image = $request-> image;
         $products->scent_similarities = $request->scent_similarities ;
         $products->category_id = $request->category_id; 
-        $products-> stock= $request-> stock;
+        $products->stock = $request->stock;
         $products->save();
 
         return redirect()->route("products.index")->with('success', 'Product succesvol aangepast!');
