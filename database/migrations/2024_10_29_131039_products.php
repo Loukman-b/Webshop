@@ -8,8 +8,11 @@ return new class extends Migration
 {
     public function up(): void
     {
+        // Disable foreign key checks temporarily
+        Schema::disableForeignKeyConstraints();
+        
         Schema::create('products', function (Blueprint $table) {
-            $table->id('Product_ID');
+            $table->id();
             $table->string('name');
             $table->string('merk');
             $table->text('description')->nullable();
@@ -21,12 +24,13 @@ return new class extends Migration
             $table->integer('stock')->default(0);
             $table->unsignedBigInteger('category_id');
             $table->timestamps();
-        
-            // Foreign key constraint
-            $table->foreign('category_id')->references('category_id')->on('categories')->onDelete('cascade');
 
+            // Foreign key constraint
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
-        
+
+        // Enable foreign key checks again
+        Schema::enableForeignKeyConstraints();
     }
 
     public function down(): void
