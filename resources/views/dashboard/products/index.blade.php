@@ -16,6 +16,8 @@
                         <p class="text-muted">{{ $product->merk }}</p>
                         <p class="card-text">€{{ $product->price }}</p>
                         <p class="card-text">{{ $product->description}}</p>
+                        <a href="{{ route('products.show', $product->id) }}" class="btn btn-primary">Bekijk Product</a>
+                        <a href="{{ route('products.edit', $product->id) }}"class="btn btn-primary">Pas product aan</a>
                     </div>
                 </div>
             </div>

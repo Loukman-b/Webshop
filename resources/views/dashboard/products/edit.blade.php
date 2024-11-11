@@ -5,7 +5,7 @@
     <h1>Beheerder pagina</h1>
     <h2>Product aanpassen</h2>
 
-    <form method="POST" action="{{ route('products.update', $product->id) }}" enctype="multipart/form-data">
+    <form method="GET" action="{{ route('products.update', $product->id) }}" enctype="multipart/form-data">
         @csrf
 
         <div class="form-group">
