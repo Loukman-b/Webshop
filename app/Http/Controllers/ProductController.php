@@ -27,7 +27,7 @@ class ProductController extends Controller
             'price' => 'required',
             'content' => 'required',
             'type' => 'required',
-            'image' => 'required',
+            'image' => 'required|image',
             'scent_similarities' => 'required',
             'stock' => 'required',
             'category_id' => 'required',
@@ -40,7 +40,10 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->content = $request->content;
         $product->type = $request->type;
-        $product->image = $request->image;
+        if ($request->hasFile('image')){
+            $path = $request->file('image')->store('images', 'public');
+            $product->image = $path;
+        }
         $product->scent_similarities = $request->scent_similarities;
         $product->category_id = $request->category_id;
         $product->stock = $request->stock;
@@ -70,13 +73,12 @@ class ProductController extends Controller
             'price' => 'required',
             'content' => 'required',
             'type' => 'required',
-            'image' => 'required',
+            'image' => 'nullable|image',
             'scent_similarities' => 'required',
             'stock' => 'required',
             'category_id' => 'required',
         ]);
 
-        // Corrigeer hier de typfouten
         $product = Product::findOrFail($id);
         $product->name = $request->name;
         $product->merk = $request->merk;
@@ -84,10 +86,13 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->content = $request->content;
         $product->type = $request->type;
-        $product->image = $request->image;
+        if ($request->hasFile('image')){
+            $path = $request->file('image')->store('images', 'public');
+            $product->image = $path;
+        }
         $product->scent_similarities = $request->scent_similarities;
-        $product->category_id = $request->category_id;
         $product->stock = $request->stock;
+        $product->category_id = $request->category_id;
         $product->save();
 
         return redirect()->route("products.index")->with('success', 'Product succesvol aangepast!');
