@@ -5,8 +5,10 @@
     <h1>Beheerder pagina</h1>
     <h2>Product aanpassen</h2>
 
-    <form method="GET" action="{{ route('products.update', $product->id) }}" enctype="multipart/form-data">
-        @csrf
+    <form method="POST" action="{{ route('products.update', $product->id) }}" enctype="multipart/form-data" >
+    @csrf
+    @method('PUT')
+
 
         <div class="form-group">
             <label for="name">Naam</label>
@@ -52,6 +54,11 @@
             <label for="stock">Voorraad</label>
             <input type="number" name="stock" min="0" class="form-control" value="{{ $product->stock }}" required>
         </div>
+        <div class="form-group">
+            <label for="category_id">Categorie</label>
+            <input type="number" name="category_id" class="form-control" value="{{ $product->category_id }}" required>
+        </div>
+
 
         <button type="submit" class="btn btn-primary">Opslaan</button>
     </form>

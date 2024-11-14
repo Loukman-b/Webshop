@@ -38,7 +38,7 @@
         </div>
         <div class="form-group">
             <label for="category_id">Categorie</label>
-            <input type="text" name="category_id" class="form-control" required>
+            <input type="number" name="category_id" class="form-control" required>
         </div>       
 
         <div class="form-group">
