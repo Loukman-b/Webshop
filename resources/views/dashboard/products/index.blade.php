@@ -8,9 +8,9 @@
         @foreach($products as $product)
             <div class="col">
                 <div class="card h-100 shadow-sm border-0">
-                    <div class="card-image" style="height: 200px; overflow: hidden;">
-                        <img src="{{ asset('storage/' . $product->image) }}" alt="Product Image">
-                    </div>
+                <div class="card-image" style="height: 200px; overflow: hidden;">
+                    <img src="{{ asset('storage/' . $product->image) }}" alt="Product Image" class="w-100 h-100 object-fit-cover">
+                </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ $product->name }}</h5>
                         <p class="text-muted">{{ $product->merk }}</p>

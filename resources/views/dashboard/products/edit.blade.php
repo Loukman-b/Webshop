@@ -61,6 +61,7 @@
 
 
         <button type="submit" class="btn btn-primary">Opslaan</button>
+        <a href="{{ route('products.show', $product->id) }}" class="btn btn-secondary">Annuleer</a>
     </form>
 </div>
 @endsection

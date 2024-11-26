@@ -23,6 +23,8 @@
                         @method('DELETE')
                         <input type="submit" value="Verwijderen" class="btn btn-danger">
                     </form>
+                    <a href="{{ route('products.index', $product->id) }}" class="btn btn-secondary">Annuleer</a>
+
                 </div>
             </div>
         </div>
