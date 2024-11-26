@@ -21,6 +21,8 @@ Auth::routes();
 
 Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function () {
     Route::resource('products', ProductController::class);
+    Route::get('/users', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.users');
+    Route::post('/users/update', [App\Http\Controllers\AdminController::class, 'update'])->name('admin.updateUsers');
 });
 
 
