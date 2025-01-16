@@ -13,11 +13,25 @@ class AdminController extends Controller
     }
 
     public function update(Request $request)
-    {
-        $user = User::findOrFail($request->user_id); // Vind de gebruiker
-        $user->is_admin = $request->has('is_admin'); // Zet de admin-status op basis van checkbox
-        $user->save(); // Sla de wijzigingen op
+{
+    // Loop door alle gebruikers in de request
+    foreach ($request->input('users', []) as $userData) {
+        $user = User::findOrFail($userData['id']);
 
-        return redirect()->route('admin.users')->with('success', 'Gebruiker succesvol bijgewerkt.');
+        // Controleer of de gebruiker de naam 'admin' heeft
+        if ($user->id == 1) {
+            // Voorkom dat de admin teruggezet kan worden
+            continue; // Sla de update voor deze gebruiker over
+        }
+
+        // Update de is_admin status voor andere gebruikers
+        $user->is_admin = isset($userData['is_admin']) ? 1 : 0;
+        $user->save();
     }
+
+    return redirect()->route('admin.users')->with('success', 'Gebruikers succesvol bijgewerkt.');
+}
+
+    
+
 }
