@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'google_id', // Toegevoegd voor Google login
+        'avatar', // Toegevoegd voor profielfoto van Google
     ];
 
     /**

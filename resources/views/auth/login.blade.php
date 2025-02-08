@@ -50,6 +50,9 @@
                                 </div>
                             </div>
                         </div>
+                        <a href="{{ route('google.login') }}" class="btn btn-danger">
+                            <i class="fab fa-google"></i> Login met Google
+                        </a>
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
